@@ -28,7 +28,7 @@ for x in range(img.shape[0]):
 # CRIANDO UM VETOR COM AS PROBABILIDADES DE OCORRÊNCIA DE CADA INTENSIDADE DE CINZA
 prob = []
 for i in range(256):
-	prob.append(histograma[i] / (img.shape[0] * img.shape[1])) 
+	prob.append(histograma[i] / (img.shape[0] * img.shape[1]))
 
 # CALCULANDO A ENTROPIA DA IMAGEM, ANTES DA CODIFICAÇÃO
 entropy = 0
@@ -86,71 +86,3 @@ print("------------------------")
 print("| Eficiência = %.2f %% |" % (entropy / comp_medio_fano * 100))
 print("------------------------")
 print()
-"""
-RLE = []
-RLE_TH = []
-
-# APLICANDO O RLE NA IMAGEM ORIGINAL
-j = 0
-
-for i in range(img.shape[0]):
-	j = 0
-	while(j < img.shape[1]):
-		qtd = 0
-		pixel = img[i, j]
-		while(j < img.shape[1] and pixel == img[i, j]):
-			qtd += 1
-			j += 1
-			#print(j)
-
-		RLE.append(qtd)
-		RLE.append(pixel)
-	# Indicador de fim da i-ésima linha da imagem
-	RLE.append(0)
-	RLE.append(0)
-
-# Indicador de fim da imagem
-RLE.append(0)
-RLE.append(1)
-
-# APLICANDO O RLE NA IMAGEM LIMIARIZADA
-j = 0
-qtd = 0
-
-for i in range(img_th.shape[0]):
-	j = 0
-	while(j < img_th.shape[1]):
-		qtd = 0
-		pixel = img_th[i, j]
-		while(j < img_th.shape[1] and pixel == img_th[i, j]):
-			qtd += 1
-			j += 1
-			#print(j)
-
-		RLE_TH.append(qtd)
-		RLE_TH.append(pixel)
-	# Indicador de fim da i-ésima linha da imagem
-	RLE_TH.append(0)
-	RLE_TH.append(0)
-		
-
-# Indicador de fim da imagem
-RLE_TH.append(0)
-RLE_TH.append(1)
-
-RLE_NP = np.asarray(RLE)
-RLE_TH_NP = np.asarray(RLE_TH)
-
-print("\n########### IMAGEM ORIGINAL #############")
-print("Tamanho da imagem original: %d" % (img.shape[0] * img.shape[1]))
-print("Tamanho após a codificação: %d" % len(RLE_NP))
-print("\n########### IMAGEM LIMIARIZADA #############")
-print("Tamanho da imagem limiarizada: %d" % getsizeof(img_th))
-print("Tamanho após a codificação: %d" % getsizeof(RLE_TH_NP))
-
-cv2.namedWindow('Imagem Original', cv2.WINDOW_NORMAL)
-cv2.namedWindow('Imagem Limiarizada', cv2.WINDOW_NORMAL)
-cv2.imshow('Imagem Limiarizada', img_th)
-cv2.imshow('Imagem Original', img)
-cv2.waitKey()
-"""
